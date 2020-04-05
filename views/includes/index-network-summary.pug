@@ -83,7 +83,6 @@ div.row.index-summary
 					th.px-2.px-lg-0.px-xl-2
 						i.fas.fa-clock.mr-1.summary-icon
 						span.border-dotted(title=`Average block time for last five blocks. The difference between the target (${coinConfig.targetBlockTimeMinutes}min) and this time indicates how the difficulty will adjust.`, data-toggle="tooltip") Block Time
-						small.ml-1 (e#{difficultyPeriod.toLocaleString()})
 					td.text-right.text-monospace
 						- var firstBlockHeader = latestBlocks[5];
 						- var currentBlock = latestBlocks[0];
