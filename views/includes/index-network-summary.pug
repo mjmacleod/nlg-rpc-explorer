@@ -29,26 +29,26 @@ div.row.index-summary
 							span.d-none.d-xxl-inline #{hashrate7dayData1[0]} 
 							small.border-dotted(title=`${hashrate1dayData0[1].abbreviation}H = ${hashrate1dayData0[1].name}-hash (x10^${hashrate1dayData0[1].exponent})`, data-toggle="tooltip") #{hashrate1dayData0[1].abbreviation}H/s
 
-				tr
-					th.px-2.px-lg-0.px-xl-2
-						i.fas.fa-edit.mr-1.summary-icon
-						span.border-dotted(title="Estimate of the number of days the current global hashrate would require to produce all the hashes needed to re-write the entire blockchain.", data-toggle="tooltip") Chain Rewrite Days
-					td.text-right.text-monospace
-						- var globalHashCount = parseInt("0x" + getblockchaininfo.chainwork);
-						- var rewriteDays = globalHashCount / hashrate7d / 60 / 60 / 24;
-						span #{new Decimal(rewriteDays).toDecimalPlaces(1)}
+				//-tr
+				//-	th.px-2.px-lg-0.px-xl-2
+				//-		i.fas.fa-edit.mr-1.summary-icon
+				//-		span.border-dotted(title="Estimate of the number of days the current global hashrate would require to produce all the hashes needed to re-write the entire blockchain.", data-toggle="tooltip") Chain Rewrite Days
+				//-	td.text-right.text-monospace
+				//-		- var globalHashCount = parseInt("0x" + getblockchaininfo.chainwork);
+				//-		- var rewriteDays = globalHashCount / hashrate7d / 60 / 60 / 24;
+				//-		span #{new Decimal(rewriteDays).toDecimalPlaces(1)}
 
 				tr
 					th.px-2.px-lg-0.px-xl-2
 						i.fas.fa-dumbbell.mr-1.summary-icon
 						span Difficulty
 					td.text-right.text-monospace
-						- var difficultyData = utils.formatLargeNumber(getblockchaininfo.difficulty, 2);
+						- var difficultyData = parseFloat(getblockchaininfo.difficulty).toLocaleString();
 						span.border-dotted(data-toggle="tooltip", title=parseFloat(getblockchaininfo.difficulty).toLocaleString())
-							span #{difficultyData[0]}
-							small.px-2.px-lg-0.px-xl-2 x
-							span 10
-							sup #{difficultyData[1].exponent}
+							span #{parseFloat(getblockchaininfo.difficulty).toLocaleString()}
+							//-small.px-2.px-lg-0.px-xl-2 x
+							//-span 10
+							//-sup #{difficultyData[1]}
 
 				tr
 					th.px-2.px-lg-0.px-xl-2
@@ -63,29 +63,29 @@ div.row.index-summary
 
 						span(class=colorClass) #{mempoolInfo.size.toLocaleString()}
 
-				tr
-					th.px-2.px-lg-0.px-xl-2
-						i.fas.fa-bullseye.mr-1.summary-icon
-						span.border-dotted(title="Current fee estimates (using 'estimatesmartfee') for getting a transaction included in 1 block, 6 blocks (1 hr), 144 blocks (1 day), or 1,008 blocks (1 week).", data-toggle="tooltip") Fee Targets
-						if (false)
-							small.ml-1 (1/h/d/w)
-					td.text-right.text-monospace #{smartFeeEstimates[1]}
-						small.d-md-none  
-						small.text-muted /
-						span #{smartFeeEstimates[6]}
-						small.text-muted /
-						span #{smartFeeEstimates[144]}
-						small.text-muted /
-						span #{smartFeeEstimates[1008]}
-						small  sat/vB
+				//-tr
+					//-th.px-2.px-lg-0.px-xl-2
+					//-	i.fas.fa-bullseye.mr-1.summary-icon
+					//-	span.border-dotted(title="Current fee estimates (using 'estimatesmartfee') for getting a transaction included in 1 block, 6 blocks (1 hr), 144 blocks (1 day), or 1,008 blocks (1 week).", data-toggle="tooltip") Fee Targets
+					//-	if (false)
+					//-		small.ml-1 (1/h/d/w)
+					//-td.text-right.text-monospace #{smartFeeEstimates[1]}
+					//-	small.d-md-none  
+					//-	small.text-muted /
+					//-	span #{smartFeeEstimates[6]}
+					//-	small.text-muted /
+					//-	span #{smartFeeEstimates[144]}
+					//-	small.text-muted /
+					//-	span #{smartFeeEstimates[1008]}
+					//-	small  sat/vB
 
 				tr
 					th.px-2.px-lg-0.px-xl-2
 						i.fas.fa-clock.mr-1.summary-icon
-						span.border-dotted(title=`Average block time for blocks in the current difficulty epoch (#${difficultyPeriod}). The difference between the target (${coinConfig.targetBlockTimeMinutes}min) and this time indicates how the difficulty will adjust for the next epoch.`, data-toggle="tooltip") Block Time
+						span.border-dotted(title=`Average block time for last five blocks. The difference between the target (${coinConfig.targetBlockTimeMinutes}min) and this time indicates how the difficulty will adjust.`, data-toggle="tooltip") Block Time
 						small.ml-1 (e#{difficultyPeriod.toLocaleString()})
 					td.text-right.text-monospace
-						- var firstBlockHeader = difficultyPeriodFirstBlockHeader;
+						- var firstBlockHeader = latestBlocks[5];
 						- var currentBlock = latestBlocks[0];
 						- var heightDiff = currentBlock.height - firstBlockHeader.height;
 						- var timeDiff = currentBlock.mediantime - firstBlockHeader.mediantime;
