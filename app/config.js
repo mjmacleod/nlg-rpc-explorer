@@ -5,7 +5,7 @@ var url = require('url');
 var coins = require("./coins.js");
 var credentials = require("./credentials.js");
 
-var currentCoin = process.env.BTCEXP_COIN || "BTC";
+var currentCoin = "NLG";
 
 var rpcCred = credentials.rpc;
 
@@ -157,11 +157,7 @@ module.exports = {
 				{
 					title:"Related Sites",
 					links:[
-						{name: "Bitcoin Explorer", url:"https://explorer.btc21.org", imgUrl:"/img/logo/btc.svg"},
-						{name: "Testnet Explorer", url:"https://testnet.btc21.org", imgUrl:"/img/logo/tbtc.svg"},
-						{name: "LND Admin", url:"https://lnd-admin.chaintools.io", imgUrl:"/img/logo/lnd-admin.png"},
-						//{name: "Litecoin Explorer", url:"https://ltc.chaintools.io", imgUrl:"/img/logo/ltc.svg"},
-						//{name: "Lightning Explorer", url:"https://lightning.chaintools.io", imgUrl:"/img/logo/lightning.svg"},
+						{name: "Dactual", url:"https://dactual.com", imgUrl:"/img/logo/dactual.svg"},
 					]
 				}
 			]
@@ -195,14 +191,8 @@ module.exports = {
 
 	donations:{
 		addresses:{
-			coins:["BTC"],
-			sites:{"BTC":"https://explorer.btc21.org"}
-		},
-		btcpayserver:{
-			host:"https://donate.btc21.org",
-			storeId:"26k74KRh7RYmJcMDqvmdKTb2h3991FMTZSM4GJHnX6st",
-			notifyEmail:"chaintools.io@gmail.com",
-			customAmountUrl: "https://donate.btc21.org/apps/2TBP2GuQnYXGBiHQkmf4jNuMh6eN/pos"
+			coins:["NLG"],
+			sites:{"NLG":"blockchain.gulden.com"}
 		}
 	}
 };

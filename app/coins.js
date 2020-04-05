@@ -1,9 +1,9 @@
 var btc = require("./coins/btc.js");
 var ltc = require("./coins/ltc.js");
+var nlg = require("./coins/nlg.js");
 
 module.exports = {
-	"BTC": btc,
-	"LTC": ltc,
+        "NLG": nlg,
 
-	"coins":["BTC", "LTC"]
+	"coins":["NLG"]
 };

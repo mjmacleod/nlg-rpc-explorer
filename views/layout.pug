@@ -34,12 +34,12 @@ html(lang="en")
 						if (coinConfig.logoUrlsByNetwork && coinConfig.logoUrlsByNetwork[activeBlockchain])
 							img.header-image(src=coinConfig.logoUrlsByNetwork[activeBlockchain], alt="logo")
 						else
-							img.header-image(src="/img/logo/btc.svg", alt="logo")
+							img.header-image(src="/img/logo/nlg.svg", alt="logo")
 
 						if (coinConfig.siteTitlesByNetwork && coinConfig.siteTitlesByNetwork[activeBlockchain])
 							span #{coinConfig.siteTitlesByNetwork[activeBlockchain]}
 						else
-							span Bitcoin Explorer
+							span Gulden Explorer
 						
 				button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarNav", aria-label="collapse navigation")
 					span.navbar-toggler-icon
@@ -171,16 +171,16 @@ html(lang="en")
 						dl
 							dt Source
 							dd
-								a(href="https://github.com/janoside/btc-rpc-explorer") github.com/janoside/btc-rpc-explorer
+								a(href="https://github.com/mjmacleod/nlg-rpc-explorer") https://github.com/mjmacleod/nlg-rpc-explorer
 								
 								if (global.sourcecodeProjectMetadata)
 									div.mt-2
-										a.btn.btn-primary.btn-sm.mr-3.mb-1.text-decoration-none(href="https://github.com/janoside/btc-rpc-explorer")
+										a.btn.btn-primary.btn-sm.mr-3.mb-1.text-decoration-none(href="https://github.com/mjmacleod/nlg-rpc-explorer")
 											i.fas.fa-star.mr-2
 											span.mr-2 Star 
 											span.badge.bg-white.text-dark #{global.sourcecodeProjectMetadata.stargazers_count}
 
-										a.btn.btn-primary.btn-sm.mr-3.mb-1.text-decoration-none(href="https://github.com/janoside/btc-rpc-explorer/fork")
+										a.btn.btn-primary.btn-sm.mr-3.mb-1.text-decoration-none(href="https://github.com/mjmacleod/nlg-rpc-explorer/fork")
 											i.fas.fa-code-branch.mr-2
 											span.mr-2 Fork 
 											span.badge.bg-white.text-dark #{global.sourcecodeProjectMetadata.forks_count}
@@ -193,7 +193,7 @@ html(lang="en")
 								if (sourcecodeVersion)
 									br
 									span commit: 
-										a(href=("https://github.com/janoside/btc-rpc-explorer/commit/" + sourcecodeVersion)) #{sourcecodeVersion}
+										a(href=("https://github.com/mjmacleod/nlg-rpc-explorer/commit/" + sourcecodeVersion)) #{sourcecodeVersion}
 								
 								br
 								span released: #{sourcecodeDate}
@@ -211,8 +211,8 @@ html(lang="en")
 									
 									div.mt-2
 										- var demoSites = [];
-										- demoSites.push({url:"https://explorer.btc21.org", logoUrl:"/img/logo/btc.svg", title:"Bitcoin Explorer"});
-										- demoSites.push({url:"https://testnet.btc21.org", logoUrl:"/img/logo/tbtc.svg", title:"Testnet Explorer"});
+										- demoSites.push({url:"blockchain.gulden.com", logoUrl:"/img/logo/nlg.svg", title:"Gulden Explorer"});
+										- demoSites.push({url:"blockchain.gulden.com", logoUrl:"/img/logo/tnlg.svg", title:"Testnet Explorer"});
 
 										each demoSite in demoSites
 											a.mr-2(href=demoSite.url, title=demoSite.title)

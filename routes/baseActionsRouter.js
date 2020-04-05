@@ -1167,6 +1167,7 @@ router.get("/address/:address", function(req, res, next) {
 	});
 });
 
+/*
 router.get("/rpc-terminal", function(req, res, next) {
 	if (!config.demoSite && !req.authenticated) {
 		res.send("RPC Terminal / Browser require authentication. Set an authentication password via the 'BTCEXP_BASIC_AUTH_PASSWORD' environment variable (see .env-sample file for more info).");
@@ -1179,8 +1180,9 @@ router.get("/rpc-terminal", function(req, res, next) {
 	res.render("terminal");
 
 	next();
-});
+});*/
 
+/*
 router.post("/rpc-terminal", function(req, res, next) {
 	if (!config.demoSite && !req.authenticated) {
 		res.send("RPC Terminal / Browser require authentication. Set an authentication password via the 'BTCEXP_BASIC_AUTH_PASSWORD' environment variable (see .env-sample file for more info).");
@@ -1242,9 +1244,9 @@ router.post("/rpc-terminal", function(req, res, next) {
 			next();
 		}
 	});
-});
+});*/
 
-router.get("/rpc-browser", function(req, res, next) {
+/*router.get("/rpc-browser", function(req, res, next) {
 	if (!config.demoSite && !req.authenticated) {
 		res.send("RPC Terminal / Browser require authentication. Set an authentication password via the 'BTCEXP_BASIC_AUTH_PASSWORD' environment variable (see .env-sample file for more info).");
 
@@ -1378,7 +1380,7 @@ router.get("/rpc-browser", function(req, res, next) {
 
 		next();
 	});
-});
+});*/
 
 router.get("/unconfirmed-tx", function(req, res, next) {
 	var limit = config.site.browseBlocksPageSize;

@@ -39,8 +39,8 @@ The below instructions are geared toward BTC, but can be adapted easily to other
 ## Instructions
 
 ```bash
-npm install -g btc-rpc-explorer
-btc-rpc-explorer
+npm install -g nlg-rpc-explorer
+nlg-rpc-explorer
 ```
 
 If you're running on mainnet with the default datadir and port, this Should Just Work.
@@ -52,30 +52,25 @@ See [configuration](#configuration) for details.
 ### Configuration
 
 Configuration options may be passed as environment variables
-or by creating an env file at `~/.config/btc-rpc-explorer.env`
+or by creating an env file at `~/.config/nlg-rpc-explorer.env`
 or at `.env` in the working directory.
 See [.env-sample](.env-sample) for a list of the options and details for formatting `.env`.
 
 You may also pass options as CLI arguments, for example:
 
 ```bash
-btc-rpc-explorer --port 8080 --bitcoind-port 18443 --bitcoind-cookie ~/.bitcoin/regtest/.cookie
+nlg-rpc-explorer --port 8080 --bitcoind-port 18443 --bitcoind-cookie ~/.bitcoin/regtest/.cookie
 ```
 
-See `btc-rpc-explorer --help` for the full list of CLI options.
+See `nlg-rpc-explorer --help` for the full list of CLI options.
 
 ## Run via Docker
 
-1. `docker build -t btc-rpc-explorer .`
-2. `docker run -p 3002:3002 -it btc-rpc-explorer`
+1. `docker build -t nlg-rpc-explorer .`
+2. `docker run -p 3002:3002 -it nlg-rpc-explorer`
 
 # Support
 
 * [https://donate.btc21.org](https://donate.btc21.org/apps/2TBP2GuQnYXGBiHQkmf4jNuMh6eN/pos)
 
-
-[npm-ver-img]: https://img.shields.io/npm/v/btc-rpc-explorer.svg?style=flat
-[npm-ver-url]: https://www.npmjs.com/package/btc-rpc-explorer
-[npm-dl-img]: http://img.shields.io/npm/dm/btc-rpc-explorer.svg?style=flat
-[npm-dl-url]: https://npmcharts.com/compare/btc-rpc-explorer?minimal=true
 
