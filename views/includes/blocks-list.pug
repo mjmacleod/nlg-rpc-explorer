@@ -12,7 +12,7 @@ div.table-responsive
 
 				th.data-header.text-right Age
 				th.data-header.text-right
-					span.border-dotted(title="Time To Mine - The time it took to mine this block after the previous block. 'Fast' blocks (mined in < 5min) are shown in green; 'slow' blocks (mined in > 15min) are shown in red.", data-toggle="tooltip") T.T.M.
+					span.border-dotted(title="Time To Mine - The time it took to mine this block after the previous block. 'Fast' blocks (mined in < 1.5min) are shown in green; 'slow' blocks (mined in > 3.5min) are shown in red.", data-toggle="tooltip") T.T.M.
 				th.data-header.text-right Miner
 				th.data-header.text-right
 					span.border-dotted(title="The number of transactions included in each block.", data-toggle="tooltip") N(tx)
@@ -21,9 +21,9 @@ div.table-responsive
 					th.data-header.text-right
 						span.border-dotted(title="The total output of all transactions in each block.", data-toggle="tooltip") Volume
 
-				th.data-header.text-right
-					span.border-dotted(title="The average fee (sat/vB) for all block transactions.", data-toggle="tooltip") Avg Fee
-				th.data-header.text-right Σ Fees
+				//-th.data-header.text-right
+					//-span.border-dotted(title="The average fee (sat/vB) for all block transactions.", data-toggle="tooltip") Avg Fee
+				//-th.data-header.text-right Σ Fees
 				
 				//th.data-header.text-right Size (kB)
 
@@ -83,9 +83,9 @@ div.table-responsive
 						td.data-cell.text-monospace.text-right
 							if (timeDiff)
 								- var colorClass = "text-muted";
-								if (timeDiff < 300000)
+								if (timeDiff < 90000)
 									- var colorClass = "text-success";
-								if (timeDiff > 900000)
+								if (timeDiff > 210000)
 									- var colorClass = "text-danger";
 
 								span.font-weight-light(class=colorClass)
@@ -122,19 +122,19 @@ div.table-responsive
 								else
 									span 0
 
-						td.data-cell.text-monospace.text-right
-							- var currencyValue = new Decimal(block.totalFees).dividedBy(block.strippedsize).times(coinConfig.baseCurrencyUnit.multiplier).toDecimalPlaces(1);
-							span #{currencyValue}
+						//-td.data-cell.text-monospace.text-right
+							//-- var currencyValue = new Decimal(block.totalFees).dividedBy(block.strippedsize).times(coinConfig.baseCurrencyUnit.multiplier).toDecimalPlaces(1);
+							//-span #{currencyValue}
 							
 							// idea: show typical tx fee, maybe also optimized fee if not segwit
-							if (false)
-								- var feeEstimateVal = currencyValue.times(166).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
-								span.border-dotted(title=`Value: ${feeEstimateVal}`, data-toggle="tooltip") #{currencyValue}
+							//-if (false)
+								//-- var feeEstimateVal = currencyValue.times(166).dividedBy(coinConfig.baseCurrencyUnit.multiplier);
+								//-span.border-dotted(title=`Value: ${feeEstimateVal}`, data-toggle="tooltip") #{currencyValue}
 
-						td.data-cell.text-monospace.text-right
-							- var currencyValue = new Decimal(block.totalFees);
-							- var currencyValueDecimals = 3;
-							include ./value-display.pug
+						//-td.data-cell.text-monospace.text-right
+							//-- var currencyValue = new Decimal(block.totalFees);
+							//-- var currencyValueDecimals = 3;
+							//-include ./value-display.pug
 
 							
 						
