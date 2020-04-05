@@ -18,13 +18,13 @@ div.row.text-monospace
 		if (txInputs)
 			- var extraInputCount = 0;
 			each txVin, txVinIndex in tx.vin
-				if (!txVin.coinbase)
+				if (!txVin.coinbase && !txVin.pow2_coinbase)
 					- var vout = null;
 					if (txInputs && txInputs[txVinIndex])
 						- var txInput = txInputs[txVinIndex];
 						- var vout = txInput;
 
-				if (txVin.coinbase || vout)
+				if (txVin.coinbase || txVin.pow2_coinbase || vout)
 					div.clearfix
 						div.tx-io-label
 							a(data-toggle="tooltip", title=("Input #" + txVinIndex.toLocaleString()), style="white-space: nowrap;")
@@ -42,7 +42,7 @@ div.row.text-monospace
 						div.tx-io-content
 							div.clearfix
 								div.tx-io-desc
-									if (txVin.coinbase)
+									if (txVin.coinbase || txVin.pow2_coinbase)
 										small.data-tag.bg-success.mr-2(title="Coinbase transactions are special transactions created by the miner of a block. They distribute the block reward (subsidy) as the miner chooses, along with all of the fees paid by transactions included in the block.", data-toggle="tooltip") coinbase
 										
 										div.pt-1
@@ -61,8 +61,16 @@ div.row.text-monospace
 
 									else
 										div.word-wrap
-											small.data-tag.bg-dark.mr-2
+											if (vout && vout.scriptPubKey && vout.scriptPubKey.type)
+												small.data-tag.bg-dark.mr-2
 												span(title=`Input Type: ${utils.outputTypeName(vout.scriptPubKey.type)}`, data-toggle="tooltip") #{utils.outputTypeAbbreviation(vout.scriptPubKey.type)}
+											else if (vout && vout.standardKeyHash && vout.standardKeyHash)
+												small.data-tag.bg-dark.mr-2
+												span(title=`Input Type: pay to keyHash`, data-toggle="tooltip")
+											else if (vout)
+												small.data-tag.bg-dark.mr-2
+												span(title=`Input Type: PoW²-witness`, data-toggle="tooltip")
+												
 											a(href=("/tx/" + txInput.txid + "#output-" + txVin.vout)) #{utils.ellipsize(txInput.txid, 26)}
 												span  ##{txVin.vout}
 
@@ -92,7 +100,7 @@ div.row.text-monospace
 
 
 								div.tx-io-value
-									if (txVin.coinbase)
+									if (txVin.coinbase || txVin.pow2_coinbase)
 										- var currencyValue = coinConfig.blockRewardFunction(blockHeight, activeBlockchain);
 										include ./value-display.pug
 									else

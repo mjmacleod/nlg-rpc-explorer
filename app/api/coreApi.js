@@ -690,7 +690,7 @@ function summarizeBlockAnalysisData(blockHeight, tx, inputs) {
 		txSummary.weight = tx.weight;
 	}
 
-	if (tx.vin[0].coinbase) {
+	if (tx.vin[0].coinbase || tx.vin[0].pow2_coinbase) {
 		txSummary.coinbase = true;
 	}
 
@@ -770,7 +770,10 @@ function getRawTransactionsWithInputs(txids, maxInputs=-1) {
 				if (transaction && transaction.vin) {
 					for (var j = 0; j < Math.min(maxInputsTracked, transaction.vin.length); j++) {
 						if (transaction.vin[j].txid) {
-							vinIds.push({txid:transaction.vin[j].txid, voutIndex:transaction.vin[j].vout});
+                            if (transaction.vin[j].txid != '0000000000000000000000000000000000000000000000000000000000000000')
+                            {
+							    vinIds.push({txid:transaction.vin[j].txid, voutIndex:transaction.vin[j].vout});
+                            }
 						}
 					}
 				}
@@ -797,11 +800,18 @@ function getRawTransactionsWithInputs(txids, maxInputs=-1) {
 				transactions.forEach(function(tx) {
 					txInputsByTransaction[tx.txid] = {};
 
-					if (tx && tx.vin) {
+					if (tx && tx.vin)
+                    {
+                        var count=0;
 						for (var i = 0; i < Math.min(maxInputsTracked, tx.vin.length); i++) {
 							var summarizedTxOutput = summarizedTxOutputs[`${tx.vin[i].txid}:${tx.vin[i].vout}`];
-							if (summarizedTxOutput) {
-								txInputsByTransaction[tx.txid][i] = summarizedTxOutput;
+							if (summarizedTxOutput)
+                            {
+                                if (tx.vin[i].txid != '0000000000000000000000000000000000000000000000000000000000000000')
+                                {
+                                    txInputsByTransaction[tx.txid][count] = summarizedTxOutput;
+                                    count=count+1;
+                                }
 							}
 						}
 					}

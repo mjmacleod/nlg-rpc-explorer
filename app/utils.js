@@ -432,7 +432,7 @@ function getTxTotalInputOutputValues(tx, txInputs, blockHeight) {
 
 	try {
 		for (var i = 0; i < tx.vin.length; i++) {
-			if (tx.vin[i].coinbase) {
+			if (tx.vin[i].coinbase || tx.vin[i].pow2_coinbase) {
 				totalInputValue = totalInputValue.plus(new Decimal(coinConfig.blockRewardFunction(blockHeight, global.activeBlockchain)));
 
 			} else {
