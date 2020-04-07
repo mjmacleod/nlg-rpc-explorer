@@ -267,7 +267,7 @@ module.exports = {
 	historicalData: [
 		{
 			type: "blockheight",
-			date: "2009-01-03",
+			date: "2014-03-29",
 			chain: "main",
 			blockHeight: 0,
 			blockHash: "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f",
@@ -277,7 +277,7 @@ module.exports = {
 		},
 		{
 			type: "blockheight",
-			date: "2017-08-24",
+			date: "2020-04-04",
 			chain: "main",
 			blockHeight: 1131653,
 			blockHash: "12245cff89fa649522a4b51791497ea80b22967e8f09afcf0fd74a6a9db3ef32",
