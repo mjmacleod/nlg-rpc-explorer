@@ -56,6 +56,10 @@ or by creating an env file at `~/.config/nlg-rpc-explorer.env`
 or at `.env` in the working directory.
 See [.env-sample](.env-sample) for a list of the options and details for formatting `.env`.
 
+```
+BTCEXP_PORT=8080 BTCEXP_BITCOIND_PORT=9232 BTCEXP_BITCOIND_USER=gulden BTCEXP_BITCOIND_PASS=password npm start
+```
+
 You may also pass options as CLI arguments, for example:
 
 ```bash
