@@ -45,7 +45,6 @@
     "qrcode": "^1.4.4",
     "redis": "^2.8.0",
     "request": "^2.88.2",
-    "sanitize": "^2.1.0",
     "semver": "^7.1.3",
     "serve-favicon": "^2.5.0",
     "simple-git": "^1.132.0"

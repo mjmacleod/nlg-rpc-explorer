@@ -22,9 +22,6 @@ var coreApi = require("./../app/api/coreApi.js");
 var addressApi = require("./../app/api/addressApi.js");
 var rpcApi = require("./../app/api/rpcApi.js");
 
-var sanitizer = require('sanitize')();
-
-
 const v8 = require('v8');
 
 const forceCsrf = csurf({ ignoreMethods: [] });
@@ -694,7 +691,7 @@ router.get("/block-height/:blockHeight", function(req, res, next) {
 });
 
 router.get("/block/:blockHash", function(req, res, next) {
-	var blockHash = sanitizer.value(req.params.blockHash, 'string');
+	var blockHash = String(req.params.blockHash).replace(/[^a-zA-Z0-9]/g, "");
 
 	res.locals.blockHash = blockHash;
 
@@ -803,7 +800,7 @@ router.get("/block-analysis/:blockHashOrHeight", function(req, res, next) {
 			goWithBlockHash(blockByHeight.hash);
 		});
 	} else {
-		goWithBlockHash(sanitizer.value(blockHashOrHeight, 'string'));
+		goWithBlockHash(String(blockHashOrHeight).replace(/[^a-zA-Z0-9]/g, ""));
 	}
 });
 
@@ -814,7 +811,7 @@ router.get("/block-analysis", function(req, res, next) {
 });
 
 router.get("/tx/:transactionId", function(req, res, next) {
-	var txid = sanitizer.value(req.params.transactionId, 'string');
+	var txid = String(req.params.transactionId).replace(/[^a-zA-Z0-9]/g, "");
 
 	var output = -1;
 	if (req.query.output) {
@@ -913,7 +910,7 @@ router.get("/address/:address", function(req, res, next) {
 	}
 
 
-	var address = sanitizer.value(req.params.address, 'string');
+	var address = String(req.params.address).replace(/[^a-zA-Z0-9]/g, "");
 
 	res.locals.address = address;
 	res.locals.limit = limit;
